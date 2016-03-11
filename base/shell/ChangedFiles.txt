@@ -1,0 +1,7 @@
+cmd.c
+cmd.rc
+cmdtable.c
+cmdver.h
+date.c
+ver.c
+lang\en-US.rc
