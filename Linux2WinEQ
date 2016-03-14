@@ -1,0 +1,40 @@
+Linux to Windows equivalent commands
+
+Integrated so far:
+pwd=cd 
+ls=dir $* 
+cat=type $*
+mv=move $1 $2 
+cp=copy $1 $2 
+clear=cls
+rm=del $* 
+ln=mklink $1 $2
+df = free
+env = set
+sleep = pause
+uname = ver, version
+vmstat = memory, mem
+# = rem
+
+Still need to integrate into CMD
+ll=dir /-b /q $* 
+history=doskey /history 
+alias=doskey /macros 
+ps=tasklist 
+kill=taskkill /f /pid $1 
+man=help $1 
+whereis=where $* 
+grep=find "$1" $2 
+arch=echo %processor_architecture% 
+whoami=echo %username% 
+hostname=echo %computername% 
+passwd=net user %username% * 
+useradd=net user /add $1 
+userdel=net user /del $1 
+lsof=openfiles 
+w=qwinsta 
+su=runas /noprofile /env /user:administrator cmd 
+sudo=runas /noprofile /env /user:administrator $1 
+reboot=shutdown /r /t 0 /f 
+poweroff=shutdown /s /t 0 /f 
+halt=poweroff 
