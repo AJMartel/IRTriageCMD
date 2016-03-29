@@ -9,7 +9,8 @@
  *
  */
 
-#pragma once
+#ifndef _CONFIG_H_INCLUDED_
+#define _CONFIG_H_INCLUDED_
 
 #define WIN32_LEAN_AND_MEAN
 
@@ -61,7 +62,9 @@
 #define INCLUDE_CMD_DEL
 #define INCLUDE_CMD_DELAY
 #define INCLUDE_CMD_DIR
+#define INCLUDE_CMD_DLL
 #define INCLUDE_CMD_FREE
+#define INCLUDE_CMD_INFO
 #define INCLUDE_CMD_LABEL
 #define INCLUDE_CMD_MEMORY
 #define INCLUDE_CMD_MKDIR
@@ -71,6 +74,7 @@
 #define INCLUDE_CMD_MSGBOX
 #endif
 #define INCLUDE_CMD_PATH
+#define INCLUDE_CMD_PRIVILEGE
 #define INCLUDE_CMD_PROMPT
 #define INCLUDE_CMD_RMDIR
 #define INCLUDE_CMD_RENAME
@@ -91,3 +95,5 @@
 #ifdef NT4_INTERNAL_COMMANDS
 #define INCLUDE_CMD_WINDOW
 #endif
+
+#endif /* _CONFIG_H_INCLUDED_ */
