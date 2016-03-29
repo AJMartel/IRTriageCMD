@@ -14,7 +14,6 @@ env = set
 sleep = pause
 uname = ver, version
 vmstat = memory, mem
-# = rem
 
 Still need to integrate into CMD
 ll=dir /-b /q $* 
