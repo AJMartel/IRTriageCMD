@@ -29,4 +29,5 @@ https://isc.sans.edu/forums/diary/Use+The+Privilege/20483/
 
 http://www.riosec.com/articles
 
+http://perldoc.perl.org/perlembed.html
 
