@@ -2,7 +2,9 @@
 IRTriage Command Line Interpreter (Cmd.exe)
 
 Download [ReactOS source](http://downloads.sourceforge.net/reactos/ReactOS-0.4.0-src.zip)
+
 Download [ReactOS build environment](http://sourceforge.net/projects/reactos/files/RosBE-Windows/i386/2.1.3/RosBE-2.1.3.exe/download)
+
 Download [IRTriageCmd](https://github.com/AJMartel/IRTriageCMD/archive/master.zip)
 
 
