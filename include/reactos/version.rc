@@ -18,7 +18,7 @@
 /* Define some defaults (shouldn't be overwritten by applications */
 #define REACTOS_DEFAULT_STR_COMPANY_NAME    "IRTriage"
 #define REACTOS_DEFAULT_STR_DESCRIPTION     "IRTriage Core Component"
-#define REACTOS_DEFAULT_STR_INTERNAL_NAME   ""
+#define REACTOS_DEFAULT_STR_INTERNAL_NAME   "cmd.exe"
 #define REACTOS_DEFAULT_STR_LEGAL_COPYRIGHT "Copyright 2016-" COPYRIGHT_YEAR " Alain Martel"
 #define REACTOS_DEFAULT_STR_PRODUCT_NAME    "IRTriage Disk Operating System"
 
