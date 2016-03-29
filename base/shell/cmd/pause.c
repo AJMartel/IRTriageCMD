@@ -17,7 +17,7 @@
  *        Unicode ready!
  */
 
-#include "precomp.h"
+#include <precomp.h>
 
 #ifdef INCLUDE_CMD_PAUSE
 
@@ -30,28 +30,29 @@
  * ?? Extend to include functionality of CHOICE if switch chars
  *     specified.
  *
- *    30-Apr-2005 (Magnus Olsen) <magnus@greatlord.com>
- *        Remove all hardcoded strings in En.rc
+ *    30-Apr-2005 (Magnus Olsen) <magnus@greatlord.com>)
+ *        Remove all hardcode string to En.rc
  */
 
 INT cmd_pause (LPTSTR param)
 {
-    TRACE ("cmd_pause: \'%s\')\n", debugstr_aw(param));
 
-    if (!_tcsncmp (param, _T("/?"), 2))
-    {
-        ConOutResPaging(TRUE,STRING_PAUSE_HELP1);
-        return 0;
-    }
+	TRACE ("cmd_pause: \'%s\')\n", debugstr_aw(param));
 
-    if (*param)
-        ConOutPrintf (param);
-    else
-        msg_pause ();
+	if (!_tcsncmp (param, _T("/?"), 2))
+	{
+		ConOutResPaging(TRUE,STRING_PAUSE_HELP1);
+		return 0;
+	}
 
-    cgetchar ();
+	if (*param)
+		ConOutPrintf (param);
+	else
+		msg_pause ();
 
-    return 0;
+	cgetchar ();
+
+	return 0;
 }
 
 #endif
