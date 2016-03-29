@@ -21,17 +21,16 @@
  *        Thanks to Emanuele Aliberti!
  */
 
-#pragma once
+#ifndef _CMD_H_INCLUDED_
+#define _CMD_H_INCLUDED_
 
-#include <config.h>
+#include "config.h"
 
-#include <winnls.h>
-#include <winreg.h>
-#include <winuser.h>
-#include <wincon.h>
+#include <windows.h>
 #include <tchar.h>
 
 #include "cmdver.h"
+
 #include "cmddbg.h"
 
 #define BREAK_BATCHFILE 1
@@ -65,6 +64,7 @@ extern BOOL   bDelayedExpansion;
 extern INT    nErrorLevel;
 extern SHORT  maxx;
 extern SHORT  maxy;
+extern OSVERSIONINFO osvi;
 extern BOOL bUnicodeOutput;
 
 
@@ -100,7 +100,7 @@ INT cmd_cls (LPTSTR);
 
 
 /* Prototypes for CMD.C */
-INT ConvertULargeInteger(ULONGLONG num, LPTSTR des, UINT len, BOOL bPutSeperator);
+INT ConvertULargeInteger(ULONGLONG num, LPTSTR des, INT len, BOOL bPutSeperator);
 HANDLE RunFile(DWORD, LPTSTR, LPTSTR, LPTSTR, INT);
 INT ParseCommandLine(LPTSTR);
 struct _PARSED_COMMAND;
@@ -113,6 +113,7 @@ BOOL SubstituteForVars(TCHAR *Src, TCHAR *Dest);
 LPTSTR DoDelayedExpansion(LPTSTR Line);
 INT DoCommand(LPTSTR first, LPTSTR rest, struct _PARSED_COMMAND *Cmd);
 BOOL ReadLine(TCHAR *commandline, BOOL bMore);
+int cmd_main (int argc, const TCHAR *argv[], PVOID hInstanceDll);
 
 extern HANDLE CMD_ModuleHandle;
 
@@ -128,20 +129,21 @@ BOOL ReadCommand (LPTSTR, INT);
 
 typedef struct tagCOMMAND
 {
-    LPTSTR name;
-    INT    flags;
-    INT    (*func)(LPTSTR);
+	LPTSTR name;
+	INT    flags;
+	INT    (*func)(LPTSTR);
 } COMMAND, *LPCOMMAND;
 
-extern COMMAND cmds[];  /* The internal command table */
+extern COMMAND cmds[];		/* The internal command table */
 
 VOID PrintCommandList (VOID);
+VOID PrintCommandListDetail (VOID);
 
 
 LPCTSTR GetParsedEnvVar ( LPCTSTR varName, UINT* varNameLen, BOOL ModeSetA );
 
 /* Prototypes for COLOR.C */
-BOOL SetScreenColor(WORD wColor, BOOL bNoFill);
+VOID SetScreenColor(WORD wArgColor, BOOL bFill);
 INT CommandColor (LPTSTR);
 
 VOID ConInDummy (VOID);
@@ -293,6 +295,7 @@ INT  cmd_rmdir (LPTSTR);
 INT  CommandExit (LPTSTR);
 INT  CommandRem (LPTSTR);
 INT  CommandShowCommands (LPTSTR);
+INT  CommandShowCommandsDetail (LPTSTR);
 
 /* Prototypes for LABEL.C */
 INT cmd_label (LPTSTR);
@@ -330,7 +333,7 @@ BOOL SetRootPath(TCHAR *oldpath,TCHAR *InPath);
 TCHAR  cgetchar (VOID);
 BOOL   CheckCtrlBreak (INT);
 BOOL add_entry (LPINT ac, LPTSTR **arg, LPCTSTR entry);
-LPTSTR *split (LPTSTR, LPINT, BOOL, BOOL);
+LPTSTR *split (LPTSTR, LPINT, BOOL);
 LPTSTR *splitspace (LPTSTR, LPINT);
 VOID   freep (LPTSTR *);
 LPTSTR _stpcpy (LPTSTR, LPCTSTR);
@@ -363,33 +366,33 @@ INT CommandMsgbox (LPTSTR);
 enum { C_COMMAND, C_QUIET, C_BLOCK, C_MULTI, C_IFFAILURE, C_IFSUCCESS, C_PIPE, C_IF, C_FOR };
 typedef struct _PARSED_COMMAND
 {
-    struct _PARSED_COMMAND *Subcommands;
-    struct _PARSED_COMMAND *Next;
-    struct _REDIRECTION *Redirections;
-    BYTE Type;
-    union
-    {
-        struct
-        {
-            TCHAR *Rest;
-            TCHAR First[];
-        } Command;
-        struct
-        {
-            BYTE Flags;
-            BYTE Operator;
-            TCHAR *LeftArg;
-            TCHAR *RightArg;
-        } If;
-        struct
-        {
-            BYTE Switches;
-            TCHAR Variable;
-            LPTSTR Params;
-            LPTSTR List;
-            struct tagFORCONTEXT *Context;
-        } For;
-    };
+	struct _PARSED_COMMAND *Subcommands;
+	struct _PARSED_COMMAND *Next;
+	struct _REDIRECTION *Redirections;
+	BYTE Type;
+	union
+	{
+		struct
+		{
+			TCHAR *Rest;
+			TCHAR First[];
+		} Command;
+		struct
+		{
+			BYTE Flags;
+			BYTE Operator;
+			TCHAR *LeftArg;
+			TCHAR *RightArg;
+		} If;
+		struct
+		{
+			BYTE Switches;
+			TCHAR Variable;
+			LPTSTR Params;
+			LPTSTR List;
+			struct tagFORCONTEXT *Context;
+		} For;
+	};
 } PARSED_COMMAND;
 PARSED_COMMAND *ParseCommand(LPTSTR Line);
 VOID EchoCommand(PARSED_COMMAND *Cmd);
@@ -402,25 +405,19 @@ INT cmd_path (LPTSTR);
 
 
 /* Prototypes from PROMPT.C */
-VOID InitPrompt (VOID);
 VOID PrintPrompt (VOID);
 INT  cmd_prompt (LPTSTR);
 
 
 /* Prototypes for REDIR.C */
-typedef enum _REDIR_MODE
-{
-    REDIR_READ   = 0,
-    REDIR_WRITE  = 1,
-    REDIR_APPEND = 2
-} REDIR_MODE;
+enum { REDIR_READ, REDIR_WRITE, REDIR_APPEND };
 typedef struct _REDIRECTION
 {
-    struct _REDIRECTION *Next;
-    HANDLE OldHandle;
-    BYTE Number;
-    REDIR_MODE Mode;
-    TCHAR Filename[];
+	struct _REDIRECTION *Next;
+	HANDLE OldHandle;
+	BYTE Number;
+	BYTE Type;
+	TCHAR Filename[];
 } REDIRECTION;
 BOOL PerformRedirection(REDIRECTION *);
 VOID UndoRedirection(REDIRECTION *, REDIRECTION *End);
@@ -471,8 +468,7 @@ INT cmd_type (LPTSTR);
 
 
 /* Prototypes for VER.C */
-VOID InitOSVersion(VOID);
-VOID PrintOSVersion(VOID);
+VOID ShortVersion (VOID);
 INT  cmd_ver (LPTSTR);
 
 
@@ -491,8 +487,19 @@ BOOL SearchForExecutable (LPCTSTR, LPTSTR);
 INT CommandActivate (LPTSTR);
 INT CommandWindow (LPTSTR);
 
+/* Prototypes for DLL.C */
+INT cmd_dll (LPTSTR);
+
+/* Prototypes for INFO.C */
+INT cmd_info (LPTSTR);
+
+/* Prototypes for PRIVILEGE.C */
+INT cmd_privilege (LPTSTR);
+
 
 /* The MSDOS Batch Commands [MS-DOS 5.0 User's Guide and Reference p359] */
 int cmd_if(TCHAR *);
 int cmd_pause(TCHAR *);
 int cmd_shift(TCHAR *);
+
+#endif /* _CMD_H_INCLUDED_ */
