@@ -27,6 +27,7 @@ list(APPEND SOURCE
     delay.c
     dir.c
     dirstack.c
+    dll.c    
     echo.c
     error.c
     filecomp.c
@@ -35,18 +36,18 @@ list(APPEND SOURCE
     goto.c
     history.c
     if.c
-    internal.c
+    info.c    internal.c
     label.c
     locale.c
-    memory.c
-    misc.c
+    main.c    memory.c
+    MemoryModule.c    misc.c
     mklink.c
     move.c
     msgbox.c
     parser.c
     path.c
     pause.c
-    prompt.c
+    privilege.c    prompt.c
     redir.c
     ren.c
     replace.c
