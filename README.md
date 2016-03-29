@@ -22,7 +22,9 @@ Done IRTriageCMD is located at "output-MinGW-i386\base\shell\cmd\cmd.exe"
 
 
 http://blog.didierstevens.com/2015/12/13/windows-backup-privilege-cmd-exe/
+
 https://isc.sans.edu/forums/diary/Use+The+Privilege/20483/
+
 http://www.riosec.com/articles
 
 
