@@ -1,0 +1,40 @@
+info.c 	Line 27 - HANDLE hFile; // hConsoleOut;
+	Line 41 - //hConsoleOut=GetStdHandle(STD_OUTPUT_HANDLE);
+
+filecomp.c Line 511-516 - /* Length of string before we complete it */
+	INT StartLength;
+	/* Length of string after completed */
+	//INT EndLength;
+	/* The number of chars added too it */
+	//static INT DiffLength = 0;
+
+	Line 741-742 - //EndLength = _tcslen(strOut);
+	//DiffLength = EndLength - StartLength;
+
+cmd.c Line 247 - return IMAGE_SUBSYSTEM_WINDOWS_CUI == ProcessPeb.ImageSubsystem; // Check case on s in system (Subsystem)
+
+cmdinput.c Line 129-148 - BOOL ReadCommand(LPTSTR str, INT maxlen)
+{
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	SHORT orgx;			/* origin x/y */
+	SHORT orgy;
+	SHORT curx;			/*current x/y cursor position*/
+	SHORT cury;
+	SHORT tempscreen;
+	INT   count;		/*used in some for loops*/
+	INT   current = 0;	/*the position of the cursor in the string (str)*/
+	INT   charcount = 0;/*chars in the string (str)*/
+	INPUT_RECORD ir;
+	//BOOL bContinue=TRUE;
+#ifdef FEATURE_UNIX_FILENAME_COMPLETION
+	WORD   wLastKey = 0;
+#endif
+	TCHAR  ch;
+	//BOOL bContinue=FALSE; /*is TRUE the second case will not be executed*/
+	BOOL bReturn = FALSE;
+	BOOL bCharInput;
+	   Line 215 - //bContinue=TRUE;
+	   Line 229 - //bContinue=TRUE;
+	   Line 605 - //wLastKey = ir.Event.KeyEvent.wVirtualKeyCode;
+
+CMake
