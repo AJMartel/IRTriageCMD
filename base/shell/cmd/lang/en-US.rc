@@ -621,7 +621,8 @@ TIMER    Allow the use of ten stopwatches.\n\
 TITLE    Sets the window title for a CMD.EXE session.\n\
 TYPE     Displays the contents of a text file.\n\
 VER      Displays the IRTriage version.\n\
-VERIFY   Tells IRTriage whether to verify that your files are written correctly to a disk.\n\
+VERIFY   Tells IRTriage whether to verify that your files are written correctly\n\
+         to a disk.\n\
 VOL      Displays a disk volume label and serial number.\n"
 
 
