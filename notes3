@@ -1,0 +1,22 @@
+まず、MS-DOSデバイス名一覧を取得する。次に各々のMS-DOSデバイス名に対するデバイスパスを取得し、各ペアを表示する。
+
+void DispDevicePath()
+{
+	char DeviceNames[1000];
+	char DevicePath[1000];
+	char *cp;
+
+	/* DOSのデバイス名一覧を取得 */
+	QueryDosDevice(NULL, DeviceNames, 1000);
+
+	/* 各DOSデバイス名に対するデバイスパス名を表示 */
+	cp = DeviceNames;
+	while(*cp != '\0') {
+		QueryDosDevice(cp, DevicePath, 1000);
+		printf("%s ... %s\n", cp, DevicePath);
+		
+		while(*cp++ != '\0');
+	}
+	printf("\n");
+}
+
