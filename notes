@@ -1,0 +1,83 @@
+;QueryDosDevice() - Querying and displaying dos devices
+;Compiler: Visual C++ Express Edition 2005
+;Compiled on Platform: Windows XP Pro SP2
+;Target platform: none, just for learning
+;Header file: Standard and Windows
+;Additional library: Windows Platform SDK
+;Additional project setting: Set project to be compiled as C
+;Project -> your_project_name Properties -> Configuration Properties -> C/C++ -> Advanced -> Compiled As: Compiled as C Code (/TC)
+;Other info: non-CLR or unmanaged
+;To do: Querying and displaying dos devices
+;To show: Using the QueryDosDevice() function
+
+ 
+#include <windows.h>
+#include <stdio.h>
+
+// Query these on my machine, using unicode/wide character
+// All the drives available in the tested machine except B:, A: is floppy and K: is CDRW
+
+LPCWSTR lpDeviceName[7] = {L"A:", L"B:", L"C:", L"E:", L"F:", L"G:", L"K:"};
+
+//The buffer for storage
+
+TCHAR lpTargetPath[1000];
+
+// You may want to try the wmain() - wide character/unicode main()
+
+int main(void)
+{
+int i, j;
+DWORD test;
+
+// For the drives/devices...
+
+for(i=0; i<=6; i++)
+{
+
+// If the function succeeds, the return value is the number of TCHARs stored
+// into the buffer pointed to by lpTargetPath. If the function fails, the return
+// value is zero. To get extended error information, call GetLastError.
+// If the buffer is too small, the function fails and the last error code
+// is ERROR_INSUFFICIENT_BUFFER.
+
+test = QueryDosDevice(lpDeviceName[i], (LPWSTR)lpTargetPath, 1000);
+
+// Test the return value and error if any
+
+printf("QueryDosDevice() return value: %d, Error: %d\n", test, GetLastError());
+printf("The DOS device name for %S is: ", lpDeviceName[i]);
+
+// Display the result of the device name
+
+for(j = 0; j<30; j++)
+printf("%c", lpTargetPath[j]);
+printf("\n");
+}
+
+printf("\n");
+
+return 0;
+
+}
+
+ 
+
+Output example:
+QueryDosDevice() return value: 17, Error: 0
+The DOS device name for A: is: \Device\Floppy0
+QueryDosDevice() return value: 0, Error: 2
+The DOS device name for B: is: \Device\Floppy0
+QueryDosDevice() return value: 25, Error: 2
+The DOS device name for C: is: \Device\HarddiskVolume1
+QueryDosDevice() return value: 25, Error: 2
+The DOS device name for E: is: \Device\HarddiskVolume2
+QueryDosDevice() return value: 25, Error: 2
+The DOS device name for F: is: \Device\HarddiskVolume3
+QueryDosDevice() return value: 25, Error: 2
+The DOS device name for G: is: \Device\HarddiskVolume4
+QueryDosDevice() return value: 16, Error: 2
+The DOS device name for K: is: \Device\CdRom0 Volume4
+Press any key to continue . . .
+
+ 
