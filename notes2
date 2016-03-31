@@ -1,0 +1,31 @@
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <stdio.h>
+
+int main() {
+	char DeviceName[256]="";
+	char VolumeName[256]="";
+	char FileSystemName[256]="";
+	HANDLE handle;
+	BOOL flag = TRUE;
+	BOOL gotInfo = FALSE;
+	long SerialNumber;
+	
+	handle = FindFirstVolumeA((LPCSTR)DeviceName, 256);
+	if (handle != INVALID_HANDLE_VALUE) {
+        flag = TRUE;
+		do {
+		   	gotInfo = GetVolumeInformationA((LPCSTR)DeviceName, VolumeName, 256, &SerialNumber, NULL, NULL, FileSystemName, 256 );
+		   	printf("DeviceName: %s\n", DeviceName);
+		   	if (gotInfo) {
+  			    printf("    VolumeName: %s\t SerialNumber: %X\n", VolumeName, SerialNumber);
+		    } else {
+  	            puts("    No Info Returned...\n");
+			}
+		   	flag = FindNextVolumeA(handle, (LPCSTR)DeviceName, 256);
+ 	    } while (flag == TRUE);
+ 	    FindVolumeClose(handle);
+    }
+    system("pause");
+    return 0;
+}
