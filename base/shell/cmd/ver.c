@@ -39,7 +39,7 @@ VOID ShortVersion (VOID)
 		RosVersion = VersionInfo.szCSDVersion + _tcslen(VersionInfo.szCSDVersion) + 1;
 		RosVersionLen = sizeof(VersionInfo.szCSDVersion) / sizeof(VersionInfo.szCSDVersion[0]) -
 	                        (RosVersion - VersionInfo.szCSDVersion);
-		if (7 <= RosVersionLen && 0 == _tcsnicmp(RosVersion, _T("ReactOS"), 7))
+		if (7 <= RosVersionLen && 0 == _tcsnicmp(RosVersion, _T("IRTriage"), 7))
 		{
 			ConOutResPrintf(STRING_VERSION_RUNVER, RosVersion);
 		}
@@ -75,7 +75,7 @@ INT cmd_ver (LPTSTR param)
 
 		ConOutPuts (_T("Copyright (C) 1994-1998 FreeDOS, Tim Norman and others."));
 		ConOutPuts (_T("Copyright (C) 1998-2016 ReactOS, Eric Kohl and others."));
-		ConOutPuts (_T("Copyright (C) 2016-") _T(COPYRIGHT_YEAR) _T(" IRTriage, Alain Martel and others."));
+		ConOutPuts (_T("Copyright (C) 2016-") _T(COPYRIGHT_YEAR) _T(" IRTriageCMD, Alain Martel and others."));
 
 		for (i = 0; param[i]; i++)
 		{
