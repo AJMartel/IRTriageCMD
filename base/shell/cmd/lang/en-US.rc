@@ -497,8 +497,7 @@ STRING_TYPE_HELP1, "Displays the contents of text files.\n\nTYPE [drive:][path]f
   /P 		  Shows one screen of output at a time.\n"
 
 STRING_DLL_HELP1, "Loads a DLL.\n\nDLL [drive:][path]filename\nDLL /A address\n\
-  /K 		  Do not unload the DLL (FreeLibrary) after \n\
-     		  loading it (LoadLibrary)\n\
+  /K 		  Do not unload the DLL (FreeLibrary) after loading it (LoadLibrary)\n\
   /M 		  Use MemoryLoadLibrary in stead of LoadLibrary\n\
   /A 		  Use MemoryLoadLibrary and load from given hexadecimal address\n"
 
@@ -585,7 +584,7 @@ COPY      Copies one or more files to another location.\n\
 DATE      Displays or sets the date.\n\
 DELETE    Deletes one or more files.\n\
 DIR       Displays a list of files and subdirectories in a directory.\n\
-DLL       Loads a DLL.\n\
+DLL       Loads a DLL with LoadLibrary or directly into memory (/m).\n\
 ECHO      Displays messages, or turns command echoing on or off.\n\
 ERASE     Deletes one or more files.\n\
 EXIT      Quits the CMD.EXE program (command interpreter).\n\
