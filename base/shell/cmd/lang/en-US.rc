@@ -505,7 +505,7 @@ STRING_DLL_HELP1, "Loads a DLL.\n\nDLL [drive:][path]filename\nDLL /A address\n\
 STRING_INFO_HELP1, "Displays info for given file.\n\nINFO [drive:][path]filename \n\
   /X 		  To be defined.\n"
 
-STRING_PRIVILEGE_HELP1, "Enable privileges.\nThe privileges enabled by this command are:\n SE_BACKUP_NAME\n"
+STRING_PRIVILEGE_HELP1, "Must be run from Administrator level account: enable privileges.\nThe privileges enabled by this command are: SE_BACKUP_NAME\n"
 
 STRING_VERIFY_HELP1, "This command is just a dummy!!\n\
 Sets whether to verify that your files are written correctly to a disk.\n\n\
@@ -530,19 +530,19 @@ listing of credits."
 STRING_VERSION_HELP3, "\n This program is distributed in the hope that it will be useful,\n\
  but WITHOUT ANY WARRANTY; without even the implied warranty of\n\
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n\
- GNU General Public License for more details."
+ GNU General Public License for more details.\n"
 
 STRING_VERSION_HELP4, "\n This program is free software; you can redistribute it and/or modify\n\
  it under the terms of the GNU General Public License as published by\n\
  the Free Software Foundation; either version 2 of the License, or\n\
  (at your option) any later version.\n"
 
-STRING_VERSION_HELP5, "\nReport bugs on https://github.com/AJMartel/IRTriageCMD/issues\n\
+STRING_VERSION_HELP5, "Report bugs on https://github.com/AJMartel/IRTriageCMD/issues\n\
 Updates are available at: https://github.com/AJMartel/IRTriageCMD"
 
 STRING_VERSION_HELP6, "\nFreeDOS version written by:\n"
 
-STRING_VERSION_HELP7, "\nIRTriage version modified by:\n"
+STRING_VERSION_HELP7, "IRTriageCMD version modified by:\n"
 
 STRING_VOL_HELP1, " Volume in drive %c is %s\n"
 STRING_VOL_HELP2, " Volume in drive %c has no label.\n"
@@ -569,61 +569,62 @@ title         new title\n"
 
 
 STRING_HELP1, "List of all available commands (+ description)\n\n\
-  command /?     For more information on a specific command\n\n\
-?        List all available commands (without description).\n\
-ALIAS    Sets, removes or shows aliases.\n\
-ATTRIB   Displays or changes file attributes.\n\
-BEEP     Beep the speaker.\n\
-CALL     Calls one batch program from another.\n\
-CD       Displays the name of or changes the current directory.\n\
-CHCP     Displays or sets the active code page number.\n\
-CHOICE   Waits for the user to choose one of a set of choices.\n\
-CLS      Clears the screen.\n\
-CMD      Starts a new instance of the IRTriage command interpreter.\n\
-COLOR    Sets the default console foreground and background colors.\n\
-COPY     Copies one or more files to another location.\n\
-DATE     Displays or sets the date.\n\
-DELETE   Deletes one or more files.\n\
-DIR      Displays a list of files and subdirectories in a directory.\n\
-DLL      Loads a DLL.\n\
-ECHO     Displays messages, or turns command echoing on or off.\n\
-ERASE    Deletes one or more files.\n\
-EXIT     Quits the CMD.EXE program (command interpreter).\n\
-FOR      Runs a specified command for each file in a set of files.\n\
-FREE     (Free) Disc space.\n\
-GOTO     Directs the command interpreter to a labeled line in a batch program.\n\
-HELP     Provides Help information for IRTriage commands.\n\
-HISTORY  List all commands which have been used\n\
-IF       Performs conditional processing in batch programs.\n\
-LABEL    Creates, changes, or deletes the volume label of a disk.\n\
-MD       Creates a directory.\n\
-MKDIR    Creates a directory.\n\
-MKLINK   Creates a filesystem link object.\n\
-MOVE     Moves one or more files from one directory to another directory.\n\
-PATH     Displays or sets a search path for executable files.\n\
-PAUSE    Suspends processing of a batch file and displays a message.\n\
-POPD     Restores the previous value of the current directory saved by PUSHD.\n\
-PROMPT   Changes the command prompt.\n\
-PUSHD    Saves the current directory then changes it.\n\
-RD       Removes a directory.\n\
-REM      Records comments (remarks) in batch files.\n\
-REN      Renames a file or files.\n\
-RENAME   Renames a file or files.\n\
-REPLACE  Replaces files.\n\
-RMDIR    Removes a directory.\n\
-SCREEN   Move cursor and optionally print text.\n\
-SET      Displays, sets, or removes IRTriage environment variables.\n\
-SHIFT    Shifts the position of replaceable parameters in batch files.\n"
-STRING_HELP2, "START    Starts a separate window to run a specified program or command.\n\
-         Executes command.\n\
-TIME     Displays or sets the system time.\n\
-TIMER    Allow the use of ten stopwatches.\n\
-TITLE    Sets the window title for a CMD.EXE session.\n\
-TYPE     Displays the contents of a text file.\n\
-VER      Displays the IRTriage version.\n\
-VERIFY   Tells IRTriage whether to verify that your files are written correctly\n\
-         to a disk.\n\
-VOL      Displays a disk volume label and serial number.\n"
+  command /?     For more information on a specific command.\n\n\
+?         List all available commands (without description).\n\
+ALIAS     Sets, removes or shows aliases.\n\
+ATTRIB    Displays or changes file attributes.\n\
+BEEP      Beep the speaker.\n\
+CALL      Calls one batch program from another.\n\
+CD        Displays the name of or changes the current directory.\n\
+CHCP      Displays or sets the active code page number.\n\
+CHOICE    Waits for the user to choose one of a set of choices.\n\
+CLS       Clears the screen.\n\
+CMD       Starts a new instance of the IRTriage command interpreter.\n\
+COLOR     Sets the default console foreground and background colors.\n\
+COPY      Copies one or more files to another location.\n\
+DATE      Displays or sets the date.\n\
+DELETE    Deletes one or more files.\n\
+DIR       Displays a list of files and subdirectories in a directory.\n\
+DLL       Loads a DLL.\n\
+ECHO      Displays messages, or turns command echoing on or off.\n\
+ERASE     Deletes one or more files.\n\
+EXIT      Quits the CMD.EXE program (command interpreter).\n\
+FOR       Runs a specified command for each file in a set of files.\n\
+FREE      (Free) Disc space.\n\
+GOTO      Directs the command interpreter to a labeled line in a batch program.\n\
+HELP      Provides Help information for IRTriageCMD commands.\n\
+HISTORY   List all commands which have been used.\n\
+IF        Performs conditional processing in batch programs.\n\
+INFO      Displays the MAC timestamps, file attributes and SDDL of the given file/folder.\n\
+LABEL     Creates, changes, or deletes the volume label of a disk.\n\
+MD        Creates a directory.\n\
+MKDIR     Creates a directory.\n\
+MKLINK    Creates a filesystem link object.\n\
+MOVE      Moves one or more files from one directory to another directory.\n\
+PATH      Displays or sets a search path for executable files.\n\
+PAUSE     Suspends processing of a batch file and displays a message.\n\
+POPD      Restores the previous value of the current directory saved by PUSHD.\n\
+PRIVILEGE Elevate privilege to SE_BACKUP_NAME (Must be Administrator to execute).\n\
+PROMPT    Changes the command prompt.\n\
+PUSHD     Saves the current directory then changes it.\n\
+RD        Removes a directory.\n\
+REM       Records comments (remarks) in batch files.\n\
+REN       Renames a file or files.\n\
+RENAME    Renames a file or files.\n\
+REPLACE   Replaces files.\n\
+RMDIR     Removes a directory.\n\
+SCREEN    Move cursor and optionally print text.\n\
+SET       Displays, sets, or removes IRTriageCMD environment variables.\n\
+SHIFT     Shifts the position of replaceable parameters in batch files.\n"
+STRING_HELP2, "START     Starts a separate window to run a specified program or command.\n\
+          Executes command.\n\
+TIME      Displays or sets the system time.\n\
+TIMER     Allow the use of ten stopwatches.\n\
+TITLE     Sets the window title for a CMD.EXE session.\n\
+TYPE      Displays the contents of a text file.\n\
+VER       Displays the IRTriageCMD version.\n\
+VERIFY    Tells IRTriageCMD whether to verify that your files are written correctly to a disk.\n\
+VOL       Displays a disk volume label and serial number.\n"
 
 
 STRING_CHOICE_OPTION,         "YN"
