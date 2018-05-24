@@ -20,30 +20,30 @@
  *    20-Jan-1999 (Eric Kohl)
  *        Redirection ready!
  *
- *    02-Apr-2005 (Magnus Olsen) <magnus@greatlord.com>)
- *        Remove all hardcode string to En.rc
+ *    02-Apr-2005 (Magnus Olsen <magnus@greatlord.com>)
+ *        Remove all hardcoded strings in En.rc
  */
 
-#include <precomp.h>
+#include "precomp.h"
 
 #ifdef INCLUDE_CMD_BEEP
 
-
-INT cmd_beep (LPTSTR param)
+INT cmd_beep(LPTSTR param)
 {
-	if (_tcsncmp (param, _T("/?"), 2) == 0)
-	{
-		ConOutResPaging(TRUE,STRING_BEEP_HELP);
-		return 0;
-	}
+    if (_tcsncmp(param, _T("/?"), 2) == 0)
+    {
+        ConOutResPaging(TRUE, STRING_BEEP_HELP);
+        return 0;
+    }
 
 #if 0
-	/* check if run in batch mode */
-	if (bc == NULL)
-		return 1;
+    /* check if run in batch mode */
+    if (bc == NULL)
+        return 1;
 #endif
-	MessageBeep (-1);
 
-	return 0;
+    ConRingBell(ConStreamGetOSHandle(StdOut));
+    return 0;
 }
+
 #endif

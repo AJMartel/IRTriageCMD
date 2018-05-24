@@ -8,7 +8,7 @@
  *        started.
  *        New file to keep the internal command table. I plan on
  *        getting rid of the table real soon now and replacing it
- *        with a dynamic mechnism.
+ *        with a dynamic mechanism.
  *
  *    27 Jul 1998  John P. Price
  *        added config.h include
@@ -17,11 +17,11 @@
  *        Unicode ready!
  */
 
-#include <precomp.h>
+#include "precomp.h"
 
 
-/* a list of all the internal commands, associating their command names */
-/* to the functions to process them                                     */
+/* A list of all the internal commands, associating their command names */
+/* to the functions to process them.                                     */
 
 
 COMMAND cmds[] =
@@ -273,7 +273,7 @@ COMMAND cmds[] =
 };
 
 
-VOID PrintCommandList (VOID)
+VOID PrintCommandList(VOID)
 {
 	LPCOMMAND cmdptr;
 	INT y;
@@ -287,6 +287,7 @@ VOID PrintCommandList (VOID)
 			if (++y == 8)
 			{
 				ConOutPuts (cmdptr->name);
+                ConOutChar(_T('\n'));
 				y = 0;
 			}
 			else

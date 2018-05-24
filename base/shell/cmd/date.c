@@ -27,11 +27,11 @@
  *    04-Feb-1999 (Eric Kohl)
  *        Fixed date input bug.
  *
- *    03-Apr-2005 (Magnus Olsen) <magnus@greatlord.com>)
- *        Remove all hardcode string to En.rc
+ *    03-Apr-2005 (Magnus Olsen <magnus@greatlord.com>)
+ *        Remove all hardcoded strings in En.rc
  */
 
-#include <precomp.h>
+#include "precomp.h"
 
 #ifdef INCLUDE_CMD_DATE
 
@@ -190,10 +190,10 @@ INT cmd_date (LPTSTR param)
 		return 0;
 	}
 
-  nErrorLevel = 0;
+   nErrorLevel = 0;
 
 	/* build parameter array */
-	arg = split (param, &argc, FALSE);
+	arg = split (param, &argc, FALSE, FALSE);
 
 	/* check for options */
 	for (i = 0; i < argc; i++)

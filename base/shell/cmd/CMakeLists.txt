@@ -3,7 +3,8 @@ add_definitions(
     -DANONYMOUSUNIONS
     -D_DEBUG_MEM)
 
-include_directories(${REACTOS_SOURCE_DIR}/include/reactos/wine)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reactos/wine)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/lib/conutils)
 
 list(APPEND SOURCE
     alias.c
@@ -12,7 +13,6 @@ list(APPEND SOURCE
     batch.c
     beep.c
     call.c
-    chcp.c
     choice.c
     cls.c
     cmd.c
@@ -22,12 +22,12 @@ list(APPEND SOURCE
     color.c
     console.c
     copy.c
+    ctty.c
     date.c
     del.c
     delay.c
     dir.c
     dirstack.c
-    dll.c    
     echo.c
     error.c
     filecomp.c
@@ -36,18 +36,18 @@ list(APPEND SOURCE
     goto.c
     history.c
     if.c
-    info.c    internal.c
+    internal.c
     label.c
     locale.c
-    main.c    memory.c
-    MemoryModule.c    misc.c
+    memory.c
+    misc.c
     mklink.c
     move.c
     msgbox.c
     parser.c
     path.c
     pause.c
-    privilege.c    prompt.c
+    prompt.c
     redir.c
     ren.c
     replace.c
@@ -70,8 +70,9 @@ list(APPEND SOURCE
 
 add_rc_deps(cmd.rc ${CMAKE_CURRENT_SOURCE_DIR}/res/terminal.ico)
 add_executable(cmd ${SOURCE} cmd.rc)
-target_link_libraries(cmd wine)
-set_module_type(cmd win32cui UNICODE)
-add_importlibs(cmd advapi32 user32 msvcrt kernel32 ntdll)
 add_pch(cmd precomp.h SOURCE)
+set_module_type(cmd win32cui UNICODE)
+target_link_libraries(cmd wine)
+target_link_libraries(cmd conutils ${PSEH_LIB})
+add_importlibs(cmd advapi32 user32 msvcrt kernel32 ntdll)
 add_cd_file(TARGET cmd DESTINATION reactos/system32 FOR all)
